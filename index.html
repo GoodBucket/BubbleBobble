@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fizz &amp; Fern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <style>
+    :root { --bg: #07081a; --panel: #1b2150; --ink: #f3f4ff; --accent: #7fffe9; --warm: #ffc27a; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); }
+    body { display: grid; place-items: center; font-family: "Press Start 2P", ui-monospace, monospace; overflow: hidden; }
+    #wrap { position: relative; width: min(100vw, calc(100vh * 4 / 3)); aspect-ratio: 4 / 3; }
+    canvas { width: 100%; height: 100%; display: block; image-rendering: pixelated; image-rendering: crisp-edges; }
+    #overlay { position: absolute; inset: 0; display: grid; place-items: end center; padding-bottom: 6%; pointer-events: none; }
+    #overlay[hidden] { display: none; }
+    #overlay > * { pointer-events: auto; background: var(--panel); border: 2px solid var(--accent); padding: 14px 16px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: center; max-width: 92%; font-size: 11px; }
+    #overlay > [hidden] { display: none; }
+    input { font: inherit; padding: 8px; background: #0c0f2a; color: var(--ink); border: 1px solid var(--accent); }
+    #join-code { width: 9em; text-transform: uppercase; letter-spacing: 0.2em; }
+    #host-link { width: min(26em, 70vw); font-size: 9px; }
+    button { font: inherit; padding: 8px 12px; background: var(--accent); color: #07081a; border: 0; cursor: pointer; }
+    button.secondary { background: transparent; color: var(--warm); border: 1px solid var(--warm); }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="screen" aria-label="Fizz and Fern game screen"></canvas>
+    <div id="overlay" hidden>
+      <form id="join-form" hidden>
+        <label for="join-code">Room code</label>
+        <input id="join-code" autocomplete="off" maxlength="8" placeholder="ABCDE">
+        <button type="submit">Join</button>
+        <button type="button" class="secondary" id="join-cancel">Back</button>
+      </form>
+      <div id="host-box" hidden>
+        <input id="host-link" readonly aria-label="Invite link">
+        <button type="button" id="copy-link">Copy link</button>
+        <button type="button" class="secondary" id="host-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

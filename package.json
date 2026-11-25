@@ -1,0 +1,13 @@
+{
+  "name": "fizz-and-fern",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fizz & Fern: an original bubble-blowing single-screen platformer for the browser, with Xbox controller support and online two-player.",
+  "type": "module",
+  "scripts": {
+    "start": "npx --yes serve -l 8080 .",
+    "test": "node test/sim.test.mjs",
+    "test:browser": "node test/browser.test.cjs"
+  },
+  "license": "MIT"
+}
